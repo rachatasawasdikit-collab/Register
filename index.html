@@ -45,11 +45,11 @@
   <div class="card neon p-8 rounded-lg w-96" style="background:linear-gradient(180deg,#060607, #05050A);">
     <div class="title text-red-400 font-bold text-2xl text-center">IC ACCESS</div>
 
-    <label class="muted mt-4">USER</label>
-    <input id="user" type="text" autocomplete="off" placeholder="Enter USER" />
+    <label class="muted mt-4">Username</label>
+    <input id="user" type="text" autocomplete="off" placeholder="Username" />
 
-    <label class="muted mt-3">PASS</label>
-    <input id="pass" type="password" autocomplete="new-password" placeholder="••••••••" />
+    <label class="muted mt-3">Password</label>
+    <input id="pass" type="password" autocomplete="new-password" placeholder="You can't see it" />
 
     <button id="loginBtn" class="w-full p-3 bg-red-600 hover:bg-red-700 rounded text-white font-bold mt-5">ENTER</button>
   </div>
@@ -59,7 +59,7 @@
 <iframe name="hidden_gform" style="display:none;"></iframe>
 
 <script>
-const CORRECT_USER = "ipconfig";
+const CORRECT_USER = "admin";
 const CORRECT_PASS = "Jaonai55";
 const GOOGLE_FORM_VIEW_URL = "https://forms.gle/U6S5regKuD7qEH2e8";
 const FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSeK67uHPt6GWHkyqepXJvwnZxdJVVX3gN_8VzpZh4IP2VR23Q/formResponse";
