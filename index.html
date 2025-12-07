@@ -15,12 +15,6 @@
   .overlay.show{opacity:1;pointer-events:auto;}
   .overlay .box{display:none !important;}
 
-  /* ✅ ซ่อน USER เป็น •••*/
-  #user{
-    -webkit-text-security: disc !important;
-    text-security: disc !important;
-  }
-
   input[type="text"], input[type="password"]{
     background:#060607;border:1px solid rgba(0,255,140,0.08);
     color:#bfffbf;padding:12px;border-radius:8px;width:100%;outline:none;
@@ -45,9 +39,15 @@
   <div class="card neon p-8 rounded-lg w-96" style="background:linear-gradient(180deg,#060607, #05050A);">
     <div class="title text-red-400 font-bold text-2xl text-center">IC ACCESS</div>
 
+    <!-- Username -->
     <label class="muted mt-4">Username</label>
-    <input id="user" type="text" autocomplete="off" placeholder="Username" />
+    <div class="relative">
+      <input id="user" type="password" autocomplete="off" placeholder="Username" class="pr-10" />
+      <button type="button" id="toggleUser"
+        class="absolute inset-y-0 right-0 px-3 text-green-300 select-none">👁️</button>
+    </div>
 
+    <!-- Password -->
     <label class="muted mt-3">Password</label>
     <input id="pass" type="password" autocomplete="new-password" placeholder="You can't see it" />
 
@@ -88,10 +88,11 @@ function doLogin(){
     setTimeout(()=>location.href=GOOGLE_FORM_VIEW_URL,1200);
   } else showOverlay('fail');
 }
+
 document.getElementById('loginBtn').addEventListener('click', doLogin);
 </script>
 
-<!-- ✅ HOLOGRAM COMPLETE / FAIL -->
+<!-- HOLOGRAM -->
 <style>
 #holoStatus{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:.35s;z-index:99999;mix-blend-mode:screen;}
 #holoStatus.show{opacity:1;}
@@ -124,7 +125,7 @@ document.getElementById('loginBtn').addEventListener('click', doLogin);
 })();
 </script>
 
-<!-- 🎬 PAGE LOAD BAR -->
+<!-- INTRO BAR -->
 <style>
 #epicIntro{position:fixed;inset:0;z-index:999998;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.75);pointer-events:none;opacity:0;transition:.45s}
 #epicIntro.show{opacity:1;pointer-events:auto;}
@@ -158,6 +159,41 @@ document.getElementById('loginBtn').addEventListener('click', doLogin);
   }
   window.addEventListener('load',()=>{ intro.classList.add('show'); requestAnimationFrame(tick);});
 })();
+</script>
+
+<!-- SHOW / HIDE USERNAME (กดค้าง) + ENTER TO LOGIN -->
+<script>
+const userInput = document.getElementById("user");
+const toggleUser = document.getElementById("toggleUser");
+
+// กดค้างเพื่อดู Username
+function showUser() {
+  userInput.type = "text";
+  toggleUser.textContent = "🙈";
+}
+
+// ปล่อยเพื่อซ่อน Username
+function hideUser() {
+  userInput.type = "password";
+  toggleUser.textContent = "👁️";
+}
+
+// เมาส์ค้าง
+toggleUser.addEventListener("mousedown", showUser);
+toggleUser.addEventListener("mouseup", hideUser);
+toggleUser.addEventListener("mouseleave", hideUser);
+
+// มือถือค้าง
+toggleUser.addEventListener("touchstart", e => { e.preventDefault(); showUser(); });
+toggleUser.addEventListener("touchend", hideUser);
+toggleUser.addEventListener("touchcancel", hideUser);
+
+// Enter เพื่อ Login
+document.addEventListener("keyup", function(e){
+  if(e.key === "Enter"){
+    doLogin();
+  }
+});
 </script>
 
 </body>
